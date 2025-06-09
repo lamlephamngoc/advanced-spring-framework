@@ -21,6 +21,8 @@ This repository is structured by **Spring modules** and includes:
 
 ---
 
+**Mermaid Docs**       | Visual flowcharts and architecture graphs |
+
 ## 📂 Project Structure
 
 ```
@@ -51,15 +53,6 @@ This repository is structured by **Spring modules** and includes:
 ├── cloud/
 │   ├── service_discovery/
 │   └── config_server/
-│
-├── reactive/
-│   ├── webflux_intro/
-│   └── r2dbc/
-│
-├── docs/
-│   ├── mermaid/
-│   │   ├── spring_security_flow.md
-│   │   └── transaction_lifecycle.md
 
 ```
 
@@ -76,8 +69,6 @@ This repository is structured by **Spring modules** and includes:
 | **Event System**       | Decoupled communication with sync/async events |
 | **Spring Data**        | Repositories, projections, specifications |
 | **Spring Cloud**       | Config Server, Eureka, Resilience4j |
-| **WebFlux**            | Reactive streams with Mono/Flux |
-| **Mermaid Docs**       | Visual flowcharts and architecture graphs |
 
 ---
 
@@ -97,3 +88,4 @@ graph TD
     end
 
     F --> A
+```

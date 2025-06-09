@@ -23,6 +23,7 @@ This repository is structured by **Spring modules** and includes:
 
 ## 📂 Project Structure
 
+```
 ├── core/
 │   ├── bean_lifecycle/
 │   └── custom_post_processors/
@@ -59,6 +60,8 @@ This repository is structured by **Spring modules** and includes:
 │   ├── mermaid/
 │   │   ├── spring_security_flow.md
 │   │   └── transaction_lifecycle.md
+
+```
 
 ---
 

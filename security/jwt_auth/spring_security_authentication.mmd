@@ -1,0 +1,38 @@
+flowchart LR
+
+    subgraph Client
+        A["POST /auth with username & password"]
+    end
+
+    subgraph WebLayer["Web Layer (Controller)"]
+        B["AuthenticationController"]
+    end
+
+    subgraph Security["Security Layer"]
+        C["AuthenticationManager"]
+        D["AuthenticationProvider (DaoAuthenticationProvider)"]
+        E["UserDetailsService"]
+        F["PasswordEncoder"]
+        G["Create Authentication Object"]
+        H["Generate JWT Token"]
+    end
+
+    subgraph Infrastructure["Infrastructure Layer"]
+        I["UserRepository (load from DB)"]
+    end
+
+    subgraph Response["Response"]
+        J["Return JWT in HTTP response"]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> I
+    I --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> J
+    J --> A

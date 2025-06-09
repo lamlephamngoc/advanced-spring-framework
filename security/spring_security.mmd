@@ -1,0 +1,55 @@
+flowchart LR
+
+    subgraph Client
+        A["HTTP request to /api/**\nwith JWT in Authorization header"]
+    end
+
+    subgraph WebServer["Servlet Container (Tomcat)"]
+        B["SecurityFilterChain"]
+    end
+
+    subgraph Security["Security Layer"]
+        C["Custom JwtAuthenticationFilter"]
+        D["JWT Utility: Validate & Parse token"]
+        E["UserDetailsService"]
+        F["Create Authentication object"]
+        G["SecurityContextHolder.setContext()"]
+        H["AccessDecisionManager"]
+    end
+
+    subgraph WebLayer["Controller Layer"]
+        I["Controller (e.g. UserController)"]
+    end
+
+    subgraph AppLayer["Application Layer"]
+        J["Service (e.g. UserService)"]
+    end
+
+    subgraph Infra["Infrastructure Layer"]
+        K["Repository (e.g. UserRepository)"]
+        L["Database"]
+    end
+
+    subgraph Response
+        M["Return JSON Response to client"]
+    end
+
+    %% Request flow
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+
+    %% Response flow
+    L --> K
+    K --> J
+    J --> I
+    I --> M
+    M --> A

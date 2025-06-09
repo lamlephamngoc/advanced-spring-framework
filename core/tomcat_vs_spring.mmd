@@ -1,0 +1,54 @@
+flowchart LR
+    subgraph Client
+        A["Browser / Mobile App"]
+    end
+
+    subgraph WebServer["Servlet Container (Tomcat Embedded)"]
+        B["HTTP Connector"]
+        C["Filter Chain"]
+        D["DispatcherServlet - Front Controller"]
+    end
+
+    subgraph SpringMVC["Spring Web Layer"]
+        E["HandlerMapping - Find Controller"]
+        F["HandlerAdapter - Invoke Method"]
+        G["Controller - UserController"]
+        H["ExceptionResolver - Handle Errors"]
+    end
+
+    subgraph AppLayer["Application Layer"]
+        I["Service - UserService"]
+    end
+
+    subgraph Infra["Infrastructure Layer"]
+        J["Repository - UserRepository"]
+        K["Database (MySQL/Postgres)"]
+    end
+
+    subgraph ResponseFlow["Response Composition"]
+        L["HttpMessageConverter - to JSON"]
+        M["HttpServletResponse"]
+    end
+
+    %% Request Flow
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> I
+    I --> J
+    J --> K
+
+    %% Return Flow
+    K --> J
+    J --> I
+    I --> G
+    G --> L
+    L --> M
+    M --> A
+
+    %% Error Handling
+    G --> H
+    H --> M

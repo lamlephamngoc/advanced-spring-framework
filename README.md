@@ -21,7 +21,9 @@ This repository is structured by **Spring modules** and includes:
 
 ---
 
-**Mermaid Docs**       | Visual flowcharts and architecture graphs |
+| Resource | Description |
+|----------|-------------|
+| **Mermaid Docs** | Visual flowcharts and architecture graphs |
 
 ## 📂 Project Structure
 
